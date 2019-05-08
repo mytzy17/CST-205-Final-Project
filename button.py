@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QHBoxLayout, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QHBoxLayout, QPushButton, QComboBox
 
 
 class Second ( QWidget ):
@@ -16,9 +16,12 @@ class MainWindow ( QMainWindow ):
         self.button.clicked.connect ( self.on_click )
         self.dialog = Second ()
         self.mainwidget = QWidget(self)
+        self.combo_box = QComboBox() 
+        self.combo_box.addItems(["English", "Spanish"])
 
         Lay = QHBoxLayout ()
         Lay.addWidget(self.button)
+        Lay.addWidget(self.combo_box)
         self.mainwidget.setLayout(Lay)
         self.setCentralWidget(self.mainwidget)
 

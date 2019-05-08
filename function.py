@@ -2,6 +2,7 @@ from PIL import Image
 #from google.cloud import translate
 import pyttsx3
 import pytesseract
+
 def trans():
     engine = pyttsx3.init()
 

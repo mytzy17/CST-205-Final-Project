@@ -1,7 +1,7 @@
 import sys
 import sip #Install sip
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QLabel, QGridLayout, QWidget, QApplication, QVBoxLayout, QPushButton, QFileDialog
+from PyQt5.QtWidgets import QMainWindow, QLabel, QGridLayout, QWidget, QApplication, QVBoxLayout, QPushButton, QFileDialog, QComboBox
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtGui import QPainter, QColor, QPen
@@ -36,7 +36,14 @@ class HelloWindow(QMainWindow):
         lay.addWidget(self.button)
         lay.addWidget(self.uploadLabel)
 
+        self.dialog = Second()
+        self.translatebtn = QPushButton("Translate", self)
+        self.translatebtn.clicked.connect(self.on_click)
+        self.comboBox = QComboBox()
+        self.comboBox.addItems(['English', 'Spanish', 'Japanese'])
 
+        lay.addWidget(self.translatebtn)
+        lay.addWidget(self.comboBox)
         lay.addWidget(label)
         
     @pyqtSlot()
@@ -44,7 +51,13 @@ class HelloWindow(QMainWindow):
     	fname, _ = QFileDialog.getOpenFileName(self.uploadLabel, 'Open File', '/usr/tmp', "Images (*.jpg *png)")
     	self.uploadLabel.setPixmap(QPixmap(fname))
 
+    def on_click(self):
+    	self.dialog.show()
 
+
+class Second ( QWidget ):
+    def __init__(self):
+        super ().__init__ ()
 
 
 if __name__ == "__main__":

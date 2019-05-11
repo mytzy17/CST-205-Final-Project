@@ -1,11 +1,11 @@
 #FIle Picker tester
-#https://www.tutorialspoint.com/pyqt/pyqt_qfiledialog_widget.htm
+##https://www.tutorialspoint.com/pyqt/pyqt_qfiledialog_widget.htm
 import sys
 from PyQt5 import *
 from PyQt5.QtCore import QObject, pyqtSlot
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QFileDialog, QVBoxLayout, QPushButton
 from PyQt5.QtGui import QPixmap
-
+from function import *
 class filePicker(QWidget):
 	def __init__(self):
 		super().__init__()
@@ -19,8 +19,10 @@ class filePicker(QWidget):
 		self.setLayout(vbox)
 	@pyqtSlot()
 	def on_click(self):
-		fname = QFileDialog.getOpenFileName(self, 'Open File', '/home', "Image Files (*.jpg *.png)")
-		self.labels.setPixmap(QPixmap(fname))
+            fname, _ = QFileDialog.getOpenFileName(self.labels, 'Open File', '/usr/tmp', "Images (*.jpg *.png)")
+#            pixmap4 = fname.scaled(1200, 800)
+            print(fname)
+            self.labels.setPixmap(QPixmap(fname))
 
 
 myApp = QApplication(sys.argv)

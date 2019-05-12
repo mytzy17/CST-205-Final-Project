@@ -9,8 +9,12 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 from PyQt5.QtCore import pyqtSlot
 from google.cloud import translate
+from .ImageToText import *
 translate_client = translate.Client()
 results = translate_client.get_languages()
+
+func = ImageToText()
+
 
 class HelloWindow(QMainWindow):
     def __init__(self):
@@ -53,11 +57,16 @@ class HelloWindow(QMainWindow):
         
     @pyqtSlot()
     def onClick(self):	
-    	fname, _ = QFileDialog.getOpenFileName(self.uploadLabel, 'Open File', '/usr/tmp', "Images (*.jpg *png)")
-    	self.uploadLabel.setPixmap(QPixmap(fname))
+        fname, _ = QFileDialog.getOpenFileName(self.uploadLabel, 'Open File', '/usr/tmp', "Images (*.jpg *png)")
+        extractedText = func.getText(fname)
+        print(extractedText)
+        self.uploadLabel.setPixmap(QPixmap(fname))
 
     def on_click(self):
-    	self.dialog.show()
+        current_value = self.comboBox.currentText()  
+        print(current_value)
+        print(func.translate(text, result[current_value]))
+        self.dialog.show()
 
 
 class Second ( QWidget ):

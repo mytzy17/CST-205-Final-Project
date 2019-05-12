@@ -23,6 +23,10 @@ class filePicker(QWidget):
 #            pixmap4 = fname.scaled(1200, 800)
             print(fname)
             self.labels.setPixmap(QPixmap(fname))
+            fname, _ = QFileDialog.getOpenFileName(self.labels, 'Open File', '/usr/tmp', "Images (*.jpg *.png)")
+            #imageFile = open(fname)
+            #data = imageFile.read()
+            self.labels.setPixmap(QPixmap(fname))
 
 
 myApp = QApplication(sys.argv)

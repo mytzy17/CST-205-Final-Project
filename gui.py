@@ -9,12 +9,11 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 from PyQt5.QtCore import pyqtSlot
 from google.cloud import translate
-from .ImageToText import *
+from function import *
 translate_client = translate.Client()
 results = translate_client.get_languages()
 
 func = ImageToText()
-
 
 class HelloWindow(QMainWindow):
     def __init__(self):
@@ -65,7 +64,8 @@ class HelloWindow(QMainWindow):
     def on_click(self):
         current_value = self.comboBox.currentText()  
         print(current_value)
-        print(func.translate(text, result[current_value]))
+        #print(results[current_value])
+        #print(func.translate(text, results[current_value]))
         self.dialog.show()
 
 

@@ -8,8 +8,8 @@ import pytesseract
 class ImageToText():
     engine = pyttsx3.init()
 
-    def getText(fname):
-        text = pytesseract.image_to_string(Image.open(fname))
+    def getText(self,words):
+        text = pytesseract.image_to_string(Image.open(words))
         return text
     def speech(text, path):
         text = text.replace('\n', ' ')

@@ -3,17 +3,15 @@ from google.cloud import translate
 import pyttsx3
 import pytesseract
 
-translate_client = translate.Client()
-result = translate_client.translate(
-    text, target_language=target)
 
-engine = pyttsx3.init()
-text = pytesseract.image_to_string(Image.open(path))
 
-class ImageToText:
+class ImageToText():
+    engine = pyttsx3.init()
+
+    def getText(fname):
+        text = pytesseract.image_to_string(Image.open(fname))
+        return text
     def speech(text, path):
-        #client = translate.Client()
-       # client.get_languages()
         text = text.replace('\n', ' ')
         engine.say(text)
         engine.runAndWait()

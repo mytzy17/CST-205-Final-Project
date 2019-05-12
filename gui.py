@@ -14,7 +14,7 @@ translate_client = translate.Client()
 results = translate_client.get_languages()
 
 func = ImageToText()
-
+extractedText = "empty"
 class HelloWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
@@ -57,13 +57,18 @@ class HelloWindow(QMainWindow):
     @pyqtSlot()
     def onClick(self):	
         fname, _ = QFileDialog.getOpenFileName(self.uploadLabel, 'Open File', '/usr/tmp', "Images (*.jpg *png)")
-        extractedText = func.getText(fname)
+        extractedText = func.getText(fname) #extracted text from image is here
         print(extractedText)
         self.uploadLabel.setPixmap(QPixmap(fname))
+        return extractedText
 
     def on_click(self):
         current_value = self.comboBox.currentText()  
         print(current_value)
+        print(extractedText)
+        #textFrom = onClick(self)
+        #result = translate_client.detect_language(textFrom)
+        #print(result['language'])
         #print(results[current_value])
         #print(func.translate(text, results[current_value]))
         self.dialog.show()
